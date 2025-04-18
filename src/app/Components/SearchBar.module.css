@@ -1,6 +1,6 @@
 .container{
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     margin: 20px auto;
     position: relative;
 }
@@ -10,7 +10,9 @@
     padding: 10px;
     padding-right: 40px;
     border-radius: 20px;
-    font-size: 16px;
+    font-size: 18px;
+    background-color: #c0e5f3;
+    color: #2C2C2C;
 }
 
 .container button{
@@ -28,7 +30,6 @@
     left: 0;
     z-index: 1;
     width: 100%;
-    max-width: 600px;
     border-radius: 10px;
     background-color: rgb(238, 232, 232);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -49,6 +50,7 @@
     cursor: pointer;
     font-size: 16px;
     border-bottom: 1px solid #ddd;
+    color: #2C2C2C;
 }
 
 .suggestionsContainer .suggestionsList .suggestionsItem:last-child{
@@ -61,13 +63,13 @@
 
 .weatherContainer{
     width: 100%;
-    max-width: 600px;
     padding: 10px;
 }
 
 .weatherContainer .weatherTitle{
     text-align: center;
     margin: 20px auto;
+    color: #2C2C2C;
 }
 
 .weatherContainer .weatherCards{
@@ -78,18 +80,23 @@
 }
 
 .weatherContainer .weatherCards .weatherCard{
+    width: 140px;
+    height: 70px;
     padding: 10px 4px;
     border: 3px solid black;
     border-radius: 10px;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 2px;
+    gap: 3px;
+    color: #2C2C2C;
 }
 
 
 @media (max-width: 480px){
     .container{
-        max-width: 380px;
+        max-width: 350px;
     }
 
     .container input{
@@ -114,4 +121,39 @@
         width: 100px;
         height: 60px;
     }
+}
+
+@media (min-width: 481px) and (max-width: 768px){
+    .container{
+        max-width: 450px;
+    }
+
+    .suggestionsContainer .suggestionsList{
+        max-height: 210px;
+    }
+
+    .weatherCards{
+        flex-wrap: wrap;
+    }
+
+    .weatherCard{
+        width: 120px;
+        height: 60px;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 1025px){
+    .container{
+        max-width: 900px;
+    }
+
+    .suggestionsContainer{
+        max-width: 100%;
+    }
+
+    .weatherContainer{
+        max-width: 100%;
+    }
+
 }
