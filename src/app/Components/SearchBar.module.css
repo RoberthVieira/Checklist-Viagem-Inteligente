@@ -21,3 +21,97 @@
     border: none;
     cursor: pointer;
 }
+
+.suggestionsContainer{
+    position: absolute;
+    top: 42px;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    background-color: rgb(238, 232, 232);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 5px;
+    padding: 10px;
+}
+
+.suggestionsContainer .suggestionsList{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.suggestionsContainer .suggestionsList .suggestionsItem{
+    padding: 10px 0;
+    cursor: pointer;
+    font-size: 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+.suggestionsContainer .suggestionsList .suggestionsItem:last-child{
+    border-bottom: none;
+}
+
+.suggestionsContainer .suggestionsList .suggestionsItem:hover{
+    background-color: #f0f0f0;
+}
+
+.weatherContainer{
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+}
+
+.weatherContainer .weatherTitle{
+    text-align: center;
+    margin: 20px auto;
+}
+
+.weatherContainer .weatherCards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.weatherContainer .weatherCards .weatherCard{
+    padding: 10px 4px;
+    border: 3px solid black;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+
+@media (max-width: 480px){
+    .container{
+        max-width: 380px;
+    }
+
+    .container input{
+        padding: 8px 10px;
+        padding-right: 40px;
+    }
+
+    .container button{
+        top: 8px;
+    }
+
+    .suggestionsContainer{
+        padding: 8px;
+        max-height: 200px;
+    }
+
+    .weatherCards{
+        flex-direction: column;
+    }
+
+    .weatherCard{
+        width: 100px;
+        height: 60px;
+    }
+}
