@@ -50,6 +50,12 @@ export default function SearchBar(){
                 type="text" 
                 placeholder="Busca" 
                 value={cidade}
+                onKeyDown={async (e) => {
+                    if(e.key === "Enter") {
+                        await buscarCidade();
+                        setSugestoes([]);
+                    }
+                }}
                 onChange={async (e) => {
                     const valor = e.target.value
                     setCidade(valor);
@@ -61,7 +67,7 @@ export default function SearchBar(){
                         setSugestoes([]);
                     }
                 }}/>
-            <button onClick={() => buscarCidade()}>
+            <button onClick={async() => {await buscarCidade(); setSugestoes([])}}>
                 <Search size={20} color='gray'/>
             </button>
             {cidade.length > 1 && sugestoes.length > 0 &&(
