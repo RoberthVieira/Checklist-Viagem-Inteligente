@@ -1,11 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Quicksand", sans-serif;
-}
-
 :root{
   --corFundo: #f0f0f0;
   --corPrimaria:#1E3A5F;
@@ -16,16 +9,22 @@
   --cortxt: #2C2C2C;
   --cortxt2: #fff;
 }
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+}
 
 .top{
   width: 100%;
-  background-color: #1E3A5F;
+  background-color: var(--corPrimaria);
   color: #fff;
   padding: 20px 0;
 }
 
 body{
-  background-color: #F0F0F0;
+  background-color: var(--corFundo);
 }
 
 h1{
