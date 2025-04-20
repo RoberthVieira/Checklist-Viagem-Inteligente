@@ -6,7 +6,7 @@
 .weatherContainer .weatherTitle{
     text-align: center;
     margin: 20px auto;
-    color: #2C2C2C;
+    color: #1E3A5F;
 }
 
 .weatherContainer .weatherCards{
@@ -20,7 +20,7 @@
     width: 140px;
     height: 70px;
     padding: 10px 4px;
-    border: 3px solid black;
+    border: 3px solid #1E3A5F;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -28,6 +28,7 @@
     align-items: center;
     gap: 3px;
     color: #2C2C2C;
+    background-color: #c0e5f3;
 }
 
 @media (max-width: 480px){

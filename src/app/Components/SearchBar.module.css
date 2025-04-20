@@ -31,7 +31,7 @@
     z-index: 1;
     width: 100%;
     border-radius: 10px;
-    background-color: rgb(238, 232, 232);
+    background-color: #1E3A5F;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-top: 5px;
     padding: 10px;
@@ -50,7 +50,7 @@
     cursor: pointer;
     font-size: 16px;
     border-bottom: 1px solid #ddd;
-    color: #2C2C2C;
+    color: #fff;
 }
 
 .suggestionsContainer .suggestionsList .suggestionsItem:last-child{
@@ -58,7 +58,7 @@
 }
 
 .suggestionsContainer .suggestionsList .suggestionsItem:hover{
-    background-color: #f0f0f0;
+    background-color: #b0e0e694;
 }
 
 @media (max-width: 480px){
