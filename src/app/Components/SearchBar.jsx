@@ -3,6 +3,7 @@ import { useState } from 'react';
 import styles from './SearchBar.module.css';
 import {Search} from 'lucide-react';
 import WeatherInfo from './WeatherInfo';
+import Checklist from './Checklist';
 
 export default function SearchBar(){
 
@@ -37,14 +38,20 @@ export default function SearchBar(){
         }
     }
 
+    const calor = dadosClima && dadosClima.main.temp >= 21;
+    const frio = dadosClima && dadosClima.main.temp <= 20;
+    const chuva = dadosClima && dadosClima.weather[0].main === "Rain"; 
+    const nublado = dadosClima && dadosClima.weather[0].main === "Clouds";
+    const ventando = dadosClima && dadosClima.wind.speed > 0;
+
     async function sugestaoCidades(cidade) {
-        const url = `http://api.openweathermap.org/geo/1.0/direct?q=${cidade}&limit=5&appid=568eed51bccae480ea79d95cc520f58d`;
+        const url = `https://api.openweathermap.org/geo/1.0/direct?q=${cidade}&limit=5&appid=568eed51bccae480ea79d95cc520f58d`;
 
         const respostaSugestao = await fetch(url);
         const dadosResposta = await respostaSugestao.json()
         return dadosResposta
     }
-
+    
     return(
         <div className={styles.container}>
             <input 
@@ -91,7 +98,18 @@ export default function SearchBar(){
 
             {erro && <p>{erro}</p>}
 
-            {dadosClima && <WeatherInfo dadosClima={dadosClima}/>}
+            {dadosClima && (
+                <>
+                    <WeatherInfo dadosClima={dadosClima}/>
+                    <Checklist
+                        calor={calor}
+                        frio={frio}
+                        chuva={chuva}
+                        nublado={nublado}
+                        ventando={ventando}
+                    />
+                </>
+            )}
         </div>
     )
 }
