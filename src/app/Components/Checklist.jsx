@@ -1,5 +1,5 @@
 import styles from './Checklist.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 export default function Checklist({calor, frio, chuva, nublado, ventando}) {
 
     const itensCalor = ['Protetor solar', 'Garrafinha de agua', 'Óculos de sol'];
@@ -9,13 +9,20 @@ export default function Checklist({calor, frio, chuva, nublado, ventando}) {
     const itensVentando = ['Corta vento', 'Protetor labial', 'Hidratante'];
 
     const sugestao = new Set();
-    const [itensMarcados, setItensMarcados] = useState([]);
+    const [itensMarcados, setItensMarcados] = useState(() => {
+        const savedItems = localStorage.getItem('itensMarcados');
+        return savedItems ? JSON.parse(savedItems) : [];    
+    });
 
     function handleToggleItem(item){
         if(itensMarcados.includes(item)){
-            setItensMarcados(itensMarcados.filter(i => i !== item))
+            const novosItens = itensMarcados.filter(i => i !== item);
+            setItensMarcados(novosItens);
+            localStorage.setItem('itensMarcados', JSON.stringify(novosItens));
         } else {
-            setItensMarcados([...itensMarcados, item])
+            const novosItens = [...itensMarcados, item];
+            setItensMarcados(novosItens);
+            localStorage.setItem('itensMarcados', JSON.stringify(novosItens))
         }
     }
 
@@ -35,7 +42,7 @@ export default function Checklist({calor, frio, chuva, nublado, ventando}) {
                         <li key={index} 
                             className={itensMarcados.includes(element) ? styles.itensMarcados : ''}>
                             <label htmlFor={`Item - ${index}`}>
-                                <input 
+                            <input 
                                     type="checkbox"
                                     id={`Item - ${index}`}
                                     checked={itensMarcados.includes(element)}
