@@ -32,10 +32,12 @@ export default function Checklist({calor, frio, chuva, nublado, ventando}) {
             <div className={styles.checklistSugestiosContainer}>
                 <ul className={styles.checklistSugestiosList}>
                     {[...sugestao].map((element, index) => (
-                        <li key={index}>
-                            <label>
+                        <li key={index} 
+                            className={itensMarcados.includes(element) ? styles.itensMarcados : ''}>
+                            <label htmlFor={`Item - ${index}`}>
                                 <input 
                                     type="checkbox"
+                                    id={`Item - ${index}`}
                                     checked={itensMarcados.includes(element)}
                                     onChange={() => handleToggleItem(element)}
                                 />
