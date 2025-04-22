@@ -47,9 +47,39 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;     
-    gap: 4px;
+    gap: 5px;
 }
 
 .checklistContainer .checklistSugestiosContainer .checklistSugestiosList li label input[type="checkbox"] {
     transform: scale(1.2);
+}
+
+@media (max-width: 480px){
+    .checklistContainer .checklistSugestiosContainer .checklistSugestiosList li{
+        width: 50%;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+
+    .checklistContainer .checklistSugestiosContainer .checklistSugestiosList li label input[type="checkbox"] {
+        transform: scale(1.5);
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px){
+    .checklistContainer .checklistSugestiosContainer .checklistSugestiosList{
+        justify-content: space-between;
+    }
+
+    .checklistContainer .checklistSugestiosContainer .checklistSugestiosList li{
+        justify-content: center;
+        width: 45%;
+        margin-bottom: 10px;
+    }
+}
+
+@media (min-width: 1025px){
+    .checklistContainer .checklistSugestiosContainer .checklistSugestiosList li label{
+        gap: 9px;
+    }
 }
