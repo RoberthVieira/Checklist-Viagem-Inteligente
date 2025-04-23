@@ -55,7 +55,6 @@ export default function SearchBar(){
         return dadosResposta
     }
 
-    // Efeito para buscar dados ao carregar a página, usando a cidade do localStorage
     useEffect(() => {
         if(cidade){
             buscarCidade();
@@ -77,6 +76,7 @@ export default function SearchBar(){
                 onChange={async (e) => {
                     const valor = e.target.value
                     setCidade(valor);
+                    setErro("")
 
                     if(valor.length >= 2){
                         const sugestoes = await sugestaoCidades(valor);

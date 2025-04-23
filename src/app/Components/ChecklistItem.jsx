@@ -2,12 +2,11 @@ import styles from './ChecklistItem.module.css';
 import { useState } from 'react';
 import { CgAdd } from "react-icons/cg";
 
-export default function ChecklistItem({itensMarcados, addItens, setMostrarChecklist}){
+export default function ChecklistItem({itensMarcados}){
 
     const [addItem, setAddItem] = useState([]);
     const [item, setItem] = useState('');
-    const [checklistAdicionado, setChecklistAdicionado] = useState(false);
-    const [obeservacao, setObservacao] = useState(() => {
+    const [observacao, setObservacao] = useState(() => {
         return localStorage.getItem('observacao') || '';
     })
 
@@ -16,7 +15,6 @@ export default function ChecklistItem({itensMarcados, addItens, setMostrarCheckl
         if(item.length !== 0){
             setAddItem((prev) => [...prev, item]);
             setItem('');
-            setChecklistAdicionado(true)
         }
     }
 
@@ -46,7 +44,8 @@ export default function ChecklistItem({itensMarcados, addItens, setMostrarCheckl
                     Adicionar
                 </button>
             </div>
-            <div>
+            {(itensMarcados.length > 0 || addItem.length > 0) && (
+                <div>
                 <h3>Itens para a viagem</h3>
                 <ul>
                     {itensMarcados.map((element, index) => (
@@ -62,11 +61,12 @@ export default function ChecklistItem({itensMarcados, addItens, setMostrarCheckl
                 </ul>
                 <textarea 
                     placeholder='Observações...'
-                    value={obeservacao}
+                    value={observacao}
                     onChange={mudancaObs}
                 />
                 <button><CgAdd/></button>
             </div>
+            )}
         </div>
     )
 }
