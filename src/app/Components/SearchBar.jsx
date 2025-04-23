@@ -85,7 +85,7 @@ export default function SearchBar(){
                         setSugestoes([]);
                     }
                 }}/>
-            <button onClick={async() => {await buscarCidade(); setSugestoes([])}}>
+            <button className={styles.btnBusca} onClick={async() => {await buscarCidade(); setSugestoes([])}}>
                 <Search size={20} color='gray'/>
             </button>
             {cidade.length > 1 && sugestoes.length > 0 &&(

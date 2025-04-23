@@ -15,7 +15,7 @@
     color: #2C2C2C;
 }
 
-.container button{
+.container .btnBusca{
     position: absolute;
     right: 15px;
     top: 10px;
@@ -71,7 +71,7 @@
         padding-right: 40px;
     }
 
-    .container button{
+    .container .btnBusca{
         top: 8px;
     }
 

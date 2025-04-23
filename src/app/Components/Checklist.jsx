@@ -1,5 +1,6 @@
 import styles from './Checklist.module.css';
 import { useState, useEffect } from 'react';
+import ChecklistItem from './ChecklistItem';
 export default function Checklist({calor, frio, chuva, nublado, ventando}) {
 
     const itensCalor = ['Protetor solar', 'Garrafinha de agua', 'Óculos de sol'];
@@ -13,6 +14,7 @@ export default function Checklist({calor, frio, chuva, nublado, ventando}) {
         const savedItems = localStorage.getItem('itensMarcados');
         return savedItems ? JSON.parse(savedItems) : [];    
     });
+    const [mostrarChecklist,setMostrarChecklist] = useState();
 
     function handleToggleItem(item){
         if(itensMarcados.includes(item)){
@@ -24,6 +26,11 @@ export default function Checklist({calor, frio, chuva, nublado, ventando}) {
             setItensMarcados(novosItens);
             localStorage.setItem('itensMarcados', JSON.stringify(novosItens))
         }
+    }
+
+    function adicionarSugestao(item){
+        addItens(item);
+        setMostrarChecklist(true)
     }
 
     if(calor) itensCalor.forEach(item => sugestao.add(item));
@@ -54,6 +61,19 @@ export default function Checklist({calor, frio, chuva, nublado, ventando}) {
                     ))}
                 </ul>
             </div>
+                <ChecklistItem 
+                    itensMarcados={itensMarcados}
+                    addItens={(item) => {
+                        if(!itensMarcados.includes(item)){
+                            setItensMarcados((prev) => {
+                                const novosItens = [... prev, item]
+                                localStorage.setItem('itensMarcados', JSON.stringify(novosItens))
+                                return novosItens
+                            })
+                        }
+                    }}
+                    setMostrarChecklist={setMostrarChecklist}
+                />
         </div>
     )
 }
