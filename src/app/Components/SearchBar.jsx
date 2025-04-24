@@ -64,6 +64,7 @@ export default function SearchBar(){
     return(
         <div className={styles.container}>
             <input 
+                className={styles.inputCidade}
                 type="text" 
                 placeholder="Busca" 
                 value={cidade}

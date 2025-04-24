@@ -1,6 +1,6 @@
 import styles from './ChecklistItem.module.css';
 import { useState } from 'react';
-import { CgAdd } from "react-icons/cg";
+import { CgAdd, CgRemove } from "react-icons/cg";
 
 export default function ChecklistItem({itensMarcados}){
 
@@ -28,11 +28,16 @@ export default function ChecklistItem({itensMarcados}){
         localStorage.setItem('observacao', txt);
     }
 
+    function remover(item){
+        const novaLista = addItem.filter((i) => i !== item);
+        setAddItem(novaLista);
+    }
 
     return(
         <div className={styles.checklistItemContainer}>
-            <div>
+            <div className={styles.inputArea}>
                 <input 
+                    className={styles.inputAddItem}
                     type="text" 
                     value={item} 
                     placeholder="Digite os itens que você vai levar..."
@@ -41,21 +46,26 @@ export default function ChecklistItem({itensMarcados}){
                 <button 
                     className={styles.btnAdd} 
                     onClick={adicionar}>
-                    Adicionar
+                    <CgAdd size={20} color='gray'/>
                 </button>
             </div>
             {(itensMarcados.length > 0 || addItem.length > 0) && (
-                <div>
-                <h3>Itens para a viagem</h3>
-                <ul>
+                <div className={styles.listaContainer}>  
+                <h3 className={styles.tituloLista}>Itens para a viagem:</h3>
+                <ul className={styles.listaItens}>
                     {itensMarcados.map((element, index) => (
-                        <li key={index}>
+                        <li key={index} className={styles.item}>
                             {element}
                         </li>
                     ))}
                     {addItem.map((element, index) => (
-                        <li key={index}>
+                        <li key={index} className={styles.itemComRemover}>
                             {element}
+                            <button 
+                                className={styles.btnExcluir}
+                                onClick={() => remover(element)}>
+                                <CgRemove size={15} color='gray'/>
+                            </button>
                         </li>
                     ))}
                 </ul>
@@ -63,8 +73,9 @@ export default function ChecklistItem({itensMarcados}){
                     placeholder='Observações...'
                     value={observacao}
                     onChange={mudancaObs}
+                    className={styles.textareaObservacao}
                 />
-                <button><CgAdd/></button>
+                <button className={styles.btnSalvarNota}><CgAdd size={20} color='gray'/></button>
             </div>
             )}
         </div>
