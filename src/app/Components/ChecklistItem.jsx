@@ -1,5 +1,5 @@
 import styles from './ChecklistItem.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CgAdd, CgRemove } from "react-icons/cg";
 
 export default function ChecklistItem({itensMarcados}){
@@ -9,6 +9,7 @@ export default function ChecklistItem({itensMarcados}){
     const [observacao, setObservacao] = useState(() => {
         return localStorage.getItem('observacao') || '';
     })
+    const [notas, setNotas] = useState([]);
 
 
     function adicionar(){
@@ -31,6 +32,18 @@ export default function ChecklistItem({itensMarcados}){
     function remover(item){
         const novaLista = addItem.filter((i) => i !== item);
         setAddItem(novaLista);
+    }
+
+    function criarChecklist() {
+        const novaNota = {
+            itens: [...new Set([...itensMarcados, ...addItem])], // sem duplicados
+            observacao: observacao
+        };
+
+        setNotas(prev => [novaNota, ...prev]);
+        setAddItem([]);
+        setObservacao('');
+        localStorage.removeItem('observacao');
     }
 
     return(
@@ -75,8 +88,35 @@ export default function ChecklistItem({itensMarcados}){
                     onChange={mudancaObs}
                     className={styles.textareaObservacao}
                 />
-                <button className={styles.btnSalvarNota}>Adicionar Checklist</button>
+                <button 
+                    className={styles.btnSalvarNota}
+                    onClick={criarChecklist}>
+                    Criar Checklist
+                </button>
             </div>
+            )}
+            {notas.length > 0 && (
+                <div className={styles.notasContainer}>
+                    <h3 className={styles.tituloNotas}>Checklist para viagem</h3>
+                    {notas.map((nota,index) => (
+                        <div key={index} className={styles.nota}>
+                            <h4>Itens:</h4>
+                            <ul>
+                                {nota.itens.map((item, idx) => (
+                                    <li key={idx}>
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                            {nota.observacao && (
+                                <>
+                                    <h4>Observação:</h4>
+                                    <p>{nota.observacao}</p>
+                                </>
+                            )}
+                        </div>
+                    ))}
+                </div>
             )}
         </div>
     )
