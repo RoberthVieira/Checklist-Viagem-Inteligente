@@ -75,7 +75,7 @@ export default function ChecklistItem({itensMarcados}){
                     onChange={mudancaObs}
                     className={styles.textareaObservacao}
                 />
-                <button className={styles.btnSalvarNota}><CgAdd size={20} color='gray'/></button>
+                <button className={styles.btnSalvarNota}>Adicionar Checklist</button>
             </div>
             )}
         </div>
