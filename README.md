@@ -50,6 +50,7 @@ http://localhost:3000
 /Components
   ├── Checklist.jsx
   ├── ChecklistItem.jsx
+  ├── Footer.jsx
   ├── SearchBar.jsx
   ├── WeatherInfo.jsx
 /pages
@@ -58,6 +59,7 @@ http://localhost:3000
 /styles
   ├── Checklist.module.css
   ├── ChecklistItem.module.css
+  ├── Footer.module.css
   ├── SearchBar.module.css
   ├── WeatherInfo.module.css
 /globals.css

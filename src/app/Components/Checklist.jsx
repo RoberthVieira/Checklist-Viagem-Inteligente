@@ -10,7 +10,10 @@ export default function Checklist({calor, frio, chuva, nublado, ventando}) {
     const itensChuva = ['Guarda-chuva', 'Capa de chuva', 'Casaco'];
     const itensNublado = ['Guarda-chuva', 'Capa de chuva', 'Casaco leve'];
     const itensVentando = ['Corta vento', 'Protetor labial', 'Hidratante'];
-    const [notas, setNotas] = useState([]);
+    const [notas, setNotas] = useState(() => {
+        const savedNotas = localStorage.getItem('notas');
+        return savedNotas ? JSON.parse(savedNotas) : [];
+    });
 
     const sugestoes = new Set();
     const [itensMarcados, setItensMarcados] = useState(() => {
@@ -24,19 +27,24 @@ export default function Checklist({calor, frio, chuva, nublado, ventando}) {
             setItensMarcados(novosItens);
             localStorage.setItem('itensMarcados', JSON.stringify(novosItens));
         } else {
-            const novosItens = [...itensMarcados, item];
+            const novosItens = [...itensMarcados, item];                                
             setItensMarcados(novosItens);
             localStorage.setItem('itensMarcados', JSON.stringify(novosItens))
         }
     }
 
     function criarChecklist(novaNota) {
-        setNotas(prevNotas => [novaNota, ...prevNotas]);
+        setNotas(prevNotas => {
+          const novasNotas = [novaNota, ...prevNotas];
+          localStorage.setItem('notas', JSON.stringify(novasNotas));
+          return novasNotas;
+        });
     }
 
     function excluirChecklist(notasParaExcluir){
         const novasNotas = notas.filter((nota) => nota !== notasParaExcluir);
         setNotas(novasNotas);
+        localStorage.setItem('notas', JSON.stringify(novasNotas));
     }
 
     if(calor) itensCalor.forEach(item => sugestoes.add(item));
@@ -73,25 +81,27 @@ export default function Checklist({calor, frio, chuva, nublado, ventando}) {
                 excluirChecklist={excluirChecklist}
             />
             {notas.length > 0 && (
-                <div className={styles.notasContainer}>
+                <div className={styles.notasAreaContainer}>
                     <h3 className={styles.tituloNotas}>Checklists Criados</h3>
-                    {notas.map((nota, index) => (
-                        <div key={index} className={styles.nota}>
-                            <h4>Itens:</h4>
-                            <ul>
-                                {nota.itens.map((item, idx) => (
-                                    <li key={idx}>{item}</li>
-                                ))}
-                            </ul>
-                            {nota.observacao && (
-                                <>
-                                    <h4>Observação:</h4>
-                                    <p>{nota.observacao}</p>
-                                </>
-                            )}
-                            <button onClick={() => excluirChecklist(nota)}><CgRemove size={22}/></button>
-                        </div>
-                    ))}
+                    <div className={styles.containerNotas}>
+                        {notas.map((nota, index) => (
+                            <div key={index} className={styles.nota}>
+                                <h4>Itens:</h4>
+                                <ul>
+                                    {nota.itens.map((item, idx) => (
+                                        <li key={idx}>{item}</li>
+                                    ))}
+                                </ul>
+                                {nota.observacao && (
+                                    <div className={styles.notaObs}>
+                                        <h4>Observação:</h4>
+                                        <p>{nota.observacao}</p>
+                                    </div>
+                                )}
+                                <button onClick={() => excluirChecklist(nota)}><CgRemove size={20} color='white'/></button>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             )}
         </div>

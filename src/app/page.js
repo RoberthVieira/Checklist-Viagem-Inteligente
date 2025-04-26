@@ -1,5 +1,5 @@
 import SearchBar from "./Components/SearchBar";
-
+import Footer from "./Components/Footer";
 
 export default function Home() {
   return (
@@ -8,6 +8,7 @@ export default function Home() {
         <h1>Checklist de Viagem Inteligente</h1>
       </div>
       <SearchBar/>
+      <Footer/>
     </main>
   );
 }
