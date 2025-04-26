@@ -34,6 +34,11 @@ export default function Checklist({calor, frio, chuva, nublado, ventando}) {
         setNotas(prevNotas => [novaNota, ...prevNotas]);
     }
 
+    function excluirChecklist(notasParaExcluir){
+        const novasNotas = notas.filter((nota) => nota !== notasParaExcluir);
+        setNotas(novasNotas);
+    }
+
     if(calor) itensCalor.forEach(item => sugestoes.add(item));
     if(frio) itensFrio.forEach(item => sugestoes.add(item));
     if(chuva) itensChuva.forEach(item => sugestoes.add(item));
@@ -65,6 +70,7 @@ export default function Checklist({calor, frio, chuva, nublado, ventando}) {
             <ChecklistItem 
                 itensMarcados={itensMarcados}
                 criarChecklist={criarChecklist}
+                excluirChecklist={excluirChecklist}
             />
             {notas.length > 0 && (
                 <div className={styles.notasContainer}>
@@ -83,11 +89,10 @@ export default function Checklist({calor, frio, chuva, nublado, ventando}) {
                                     <p>{nota.observacao}</p>
                                 </>
                             )}
+                            <button onClick={() => excluirChecklist(nota)}><CgRemove size={22}/></button>
                         </div>
                     ))}
-                    <button><CgRemove size={22}/></button>
                 </div>
-
             )}
         </div>
     )

@@ -2,7 +2,7 @@ import styles from './ChecklistItem.module.css';
 import { useState } from 'react';
 import { CgAdd, CgRemove } from "react-icons/cg";
 
-export default function ChecklistItem({itensMarcados, criarChecklist}){
+export default function ChecklistItem({itensMarcados, criarChecklist, excluirChecklist}){
 
     const [addItem, setAddItem] = useState([]);
     const [item, setItem] = useState('');
