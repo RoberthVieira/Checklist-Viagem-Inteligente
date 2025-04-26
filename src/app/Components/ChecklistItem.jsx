@@ -1,16 +1,14 @@
 import styles from './ChecklistItem.module.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { CgAdd, CgRemove } from "react-icons/cg";
 
-export default function ChecklistItem({itensMarcados}){
+export default function ChecklistItem({itensMarcados, criarChecklist}){
 
     const [addItem, setAddItem] = useState([]);
     const [item, setItem] = useState('');
     const [observacao, setObservacao] = useState(() => {
         return localStorage.getItem('observacao') || '';
     })
-    const [notas, setNotas] = useState([]);
-
 
     function adicionar(){
         if(item.length !== 0){
@@ -34,13 +32,14 @@ export default function ChecklistItem({itensMarcados}){
         setAddItem(novaLista);
     }
 
-    function criarChecklist() {
+    function criar() {
         const novaNota = {
-            itens: [...new Set([...itensMarcados, ...addItem])], // sem duplicados
+            itens: [...new Set([...itensMarcados, ...addItem])],
             observacao: observacao
         };
 
-        setNotas(prev => [novaNota, ...prev]);
+        criarChecklist(novaNota);
+
         setAddItem([]);
         setObservacao('');
         localStorage.removeItem('observacao');
@@ -64,58 +63,35 @@ export default function ChecklistItem({itensMarcados}){
             </div>
             {(itensMarcados.length > 0 || addItem.length > 0) && (
                 <div className={styles.listaContainer}>  
-                <h3 className={styles.tituloLista}>Itens para a viagem:</h3>
-                <ul className={styles.listaItens}>
-                    {itensMarcados.map((element, index) => (
-                        <li key={index} className={styles.item}>
-                            {element}
+                    <h3 className={styles.tituloLista}>Itens para a viagem:</h3>
+                    <ul className={styles.listaItens}>
+                        {itensMarcados.map((element, index) => (
+                            <li key={index} className={styles.item}>
+                                {element}
+                            </li>
+                        ))}
+                        {addItem.map((element, index) => (
+                            <li key={index} className={styles.itemComRemover}>
+                                {element}
+                                <button 
+                                    className={styles.btnExcluir}
+                                    onClick={() => remover(element)}>
+                                    <CgRemove size={15} color='gray'/>
+                                </button>
                         </li>
                     ))}
-                    {addItem.map((element, index) => (
-                        <li key={index} className={styles.itemComRemover}>
-                            {element}
-                            <button 
-                                className={styles.btnExcluir}
-                                onClick={() => remover(element)}>
-                                <CgRemove size={15} color='gray'/>
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-                <textarea 
-                    placeholder='Observações...'
-                    value={observacao}
-                    onChange={mudancaObs}
-                    className={styles.textareaObservacao}
-                />
-                <button 
-                    className={styles.btnSalvarNota}
-                    onClick={criarChecklist}>
-                    Criar Checklist
-                </button>
-            </div>
-            )}
-            {notas.length > 0 && (
-                <div className={styles.notasContainer}>
-                    <h3 className={styles.tituloNotas}>Checklist para viagem</h3>
-                    {notas.map((nota,index) => (
-                        <div key={index} className={styles.nota}>
-                            <h4>Itens:</h4>
-                            <ul>
-                                {nota.itens.map((item, idx) => (
-                                    <li key={idx}>
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-                            {nota.observacao && (
-                                <>
-                                    <h4>Observação:</h4>
-                                    <p>{nota.observacao}</p>
-                                </>
-                            )}
-                        </div>
-                    ))}
+                    </ul>
+                    <textarea 
+                        placeholder='Observações...'
+                        value={observacao}
+                        onChange={mudancaObs}
+                        className={styles.textareaObservacao}
+                    />
+                    <button 
+                        className={styles.btnSalvarNota}
+                        onClick={criar}>
+                        Criar Checklist
+                    </button>
                 </div>
             )}
         </div>

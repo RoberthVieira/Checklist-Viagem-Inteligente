@@ -1,6 +1,8 @@
 import styles from './Checklist.module.css';
 import { useState } from 'react';
+import { CgRemove } from "react-icons/cg";
 import ChecklistItem from './ChecklistItem';
+
 export default function Checklist({calor, frio, chuva, nublado, ventando}) {
 
     const itensCalor = ['Protetor solar', 'Garrafinha de agua', 'Óculos de sol'];
@@ -8,6 +10,7 @@ export default function Checklist({calor, frio, chuva, nublado, ventando}) {
     const itensChuva = ['Guarda-chuva', 'Capa de chuva', 'Casaco'];
     const itensNublado = ['Guarda-chuva', 'Capa de chuva', 'Casaco leve'];
     const itensVentando = ['Corta vento', 'Protetor labial', 'Hidratante'];
+    const [notas, setNotas] = useState([]);
 
     const sugestoes = new Set();
     const [itensMarcados, setItensMarcados] = useState(() => {
@@ -25,6 +28,10 @@ export default function Checklist({calor, frio, chuva, nublado, ventando}) {
             setItensMarcados(novosItens);
             localStorage.setItem('itensMarcados', JSON.stringify(novosItens))
         }
+    }
+
+    function criarChecklist(novaNota) {
+        setNotas(prevNotas => [novaNota, ...prevNotas]);
     }
 
     if(calor) itensCalor.forEach(item => sugestoes.add(item));
@@ -55,9 +62,33 @@ export default function Checklist({calor, frio, chuva, nublado, ventando}) {
                     ))}
                 </ul>
             </div>
-                <ChecklistItem 
-                    itensMarcados={itensMarcados}
-                />
+            <ChecklistItem 
+                itensMarcados={itensMarcados}
+                criarChecklist={criarChecklist}
+            />
+            {notas.length > 0 && (
+                <div className={styles.notasContainer}>
+                    <h3 className={styles.tituloNotas}>Checklists Criados</h3>
+                    {notas.map((nota, index) => (
+                        <div key={index} className={styles.nota}>
+                            <h4>Itens:</h4>
+                            <ul>
+                                {nota.itens.map((item, idx) => (
+                                    <li key={idx}>{item}</li>
+                                ))}
+                            </ul>
+                            {nota.observacao && (
+                                <>
+                                    <h4>Observação:</h4>
+                                    <p>{nota.observacao}</p>
+                                </>
+                            )}
+                        </div>
+                    ))}
+                    <button><CgRemove size={22}/></button>
+                </div>
+
+            )}
         </div>
     )
 }
