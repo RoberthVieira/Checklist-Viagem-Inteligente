@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Checklist de Viagem Inteligente ✈️☀️🌧️
 
-## Getting Started
+Este é um projeto pessoal desenvolvido com Next.js, que ajuda usuários a criarem checklists de viagem personalizados baseados nas condições climáticas da cidade pesquisada.
 
-First, run the development server:
 
-```bash
+📋 Funcionalidades
+
+Buscar a previsão do tempo de uma cidade usando a API do OpenWeatherMap.
+Exibir informações detalhadas do clima (temperatura, vento, condição atual, etc.).
+Gerar sugestões de itens para levar na viagem, com base no clima da cidade:
+Itens para clima quente, frio, chuvoso, nublado ou ventando.
+Permitir que o usuário:
+Marque os itens sugeridos que deseja levar.
+Adicione manualmente novos itens ao checklist.
+Escreva observações adicionais.
+Salve múltiplos checklists.
+Exclua checklists criados.
+Dados persistem no localStorage, mesmo após fechar ou atualizar a página.
+
+
+🛠️ Tecnologias Utilizadas
+
+Next.js (App Router)
+React Hooks (useState, useEffect)
+CSS Modules para estilização dos componentes
+Lucide React e React Icons para ícones
+OpenWeatherMap API para buscar dados climáticos em tempo real
+
+
+🚀 Como Rodar o Projeto
+
+Clone este repositório:
+git clone https://github.com/seu-usuario/nome-do-repositorio.git
+
+Navegue até a pasta do projeto:
+cd nome-do-repositorio
+
+Instale as dependências:
+npm install
+
+Inicie o servidor de desenvolvimento:
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse o projeto no navegador:
+http://localhost:3000
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+⚙️ Estrutura de Pastas
 
-## Learn More
+/Components
+  ├── Checklist.jsx
+  ├── ChecklistItem.jsx
+  ├── SearchBar.jsx
+  ├── WeatherInfo.jsx
+/pages
+  ├── index.jsx (Home)
+  ├── layout.jsx (Root Layout)
+/styles
+  ├── Checklist.module.css
+  ├── ChecklistItem.module.css
+  ├── SearchBar.module.css
+  ├── WeatherInfo.module.css
+/globals.css
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🌐 API Utilizada
+OpenWeatherMap API
+Endpoint para clima atual
+Endpoint para sugestões de cidades na busca
+Observação: A chave da API está diretamente no código para fins de desenvolvimento. Em produção, recomenda-se proteger a chave usando variáveis de ambiente.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+📈 Melhorias Futuras
+Permitir edição dos checklists existentes.
+Integrar previsão de clima para múltiplos dias.
+Sincronizar dados com backend ou banco de dados.
