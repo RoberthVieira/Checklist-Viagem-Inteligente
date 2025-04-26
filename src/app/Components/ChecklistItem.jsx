@@ -1,14 +1,18 @@
 import styles from './ChecklistItem.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CgAdd, CgRemove } from "react-icons/cg";
 
 export default function ChecklistItem({itensMarcados, criarChecklist, excluirChecklist}){
 
     const [addItem, setAddItem] = useState([]);
     const [item, setItem] = useState('');
-    const [observacao, setObservacao] = useState(() => {
-        return localStorage.getItem('observacao') || '';
-    })
+    const [observacao, setObservacao] = useState('');
+    useEffect(() => {
+        const savedObservacao = localStorage.getItem('observacao');
+        if (savedObservacao) {
+            setObservacao(savedObservacao);
+        }
+    }, []);
 
     function adicionar(){
         if(item.length !== 0){

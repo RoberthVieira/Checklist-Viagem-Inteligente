@@ -7,7 +7,13 @@ import Checklist from './Checklist';
 
 export default function SearchBar(){
 
-    const [cidade, setCidade] = useState(() => localStorage.getItem('cidade') || "");
+    const [cidade, setCidade] = useState("");
+    useEffect(() => {
+        const storedCidade = localStorage.getItem('cidade');
+        if (storedCidade) {
+            setCidade(storedCidade);
+        }
+    }, []);
     const [dadosClima, setDadosClima] = useState(null);
     const [erro, setErro] = useState("");
     const [loading, setLoading] = useState(false);

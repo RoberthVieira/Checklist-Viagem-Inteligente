@@ -1,5 +1,5 @@
 import styles from './Checklist.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CgRemove } from "react-icons/cg";
 import ChecklistItem from './ChecklistItem';
 
@@ -10,16 +10,22 @@ export default function Checklist({calor, frio, chuva, nublado, ventando}) {
     const itensChuva = ['Guarda-chuva', 'Capa de chuva', 'Casaco'];
     const itensNublado = ['Guarda-chuva', 'Capa de chuva', 'Casaco leve'];
     const itensVentando = ['Corta vento', 'Protetor labial', 'Hidratante'];
-    const [notas, setNotas] = useState(() => {
+    const [notas, setNotas] = useState([]);
+    useEffect(() => {
         const savedNotas = localStorage.getItem('notas');
-        return savedNotas ? JSON.parse(savedNotas) : [];
-    });
+        if (savedNotas) {
+            setNotas(JSON.parse(savedNotas));
+        }
+    }, []);
 
     const sugestoes = new Set();
-    const [itensMarcados, setItensMarcados] = useState(() => {
+    const [itensMarcados, setItensMarcados] = useState([]);
+    useEffect(() => {
         const savedItems = localStorage.getItem('itensMarcados');
-        return savedItems ? JSON.parse(savedItems) : [];    
-    });
+        if (savedItems) {
+            setItensMarcados(JSON.parse(savedItems));
+        }
+    }, []);
 
     function handleToggleItem(item){
         if(itensMarcados.includes(item)){
