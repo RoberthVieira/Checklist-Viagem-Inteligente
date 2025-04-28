@@ -66,6 +66,7 @@ http://localhost:3000
 
 
 🌐 API Utilizada
+
 OpenWeatherMap API
 Endpoint para clima atual
 Endpoint para sugestões de cidades na busca
@@ -73,6 +74,11 @@ Observação: A chave da API está diretamente no código para fins de desenvolv
 
 
 📈 Melhorias Futuras
+
 Permitir edição dos checklists existentes.
 Integrar previsão de clima para múltiplos dias.
 Sincronizar dados com backend ou banco de dados.
+
+
+LINK PARA ACESSO 
+https://checklist-viagem-inteligente-tc94.vercel.app
