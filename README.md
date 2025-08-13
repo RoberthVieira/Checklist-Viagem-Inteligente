@@ -1,6 +1,6 @@
-Checklist de Viagem Inteligente ✈️☀️🌧️
+🧳 Checklist de Viagem Inteligente ✈️☀️🌧️
 
-Este é um projeto pessoal desenvolvido com Next.js, que ajuda usuários a criarem checklists de viagem personalizados baseados nas condições climáticas da cidade pesquisada.
+Um projeto pessoal desenvolvido com Next.js que ajuda usuários a criar checklists de viagem personalizados com base nas condições climáticas da cidade pesquisada.
 
 
 📋 Funcionalidades
