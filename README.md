@@ -67,3 +67,9 @@ Sincronizar dados com backend ou banco de dados.
 
 LINK PARA ACESSO 
 https://checklist-viagem-inteligente-tc94.vercel.app
+
+## 🖼️ Preview do Projeto
+
+<p align="center">
+  <img src="./public/preview.png" alt="Preview do Checklist de Viagem Inteligente" width="800">
+</p>
