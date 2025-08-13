@@ -69,5 +69,5 @@ LINK PARA ACESSO
 https://checklist-viagem-inteligente-tc94.vercel.app
 ```
 <p align="center">
-  <img src="public/preview.png" alt="Preview do Checklist de Viagem Inteligente" width="800">
+  <img src="./public/preview.png" alt="Preview do Checklist de Viagem Inteligente" width="800">
 </p>
